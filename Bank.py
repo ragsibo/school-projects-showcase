@@ -62,7 +62,7 @@ def main():
             print("*********************")
 
     print("*********************")
-    print("Thank you! Have a nice day!")
+    print("Thank you for checking in!")
     print("*********************")
 
 if __name__ == '__main__':
