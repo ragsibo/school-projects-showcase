@@ -1,3 +1,5 @@
+#Some help was taken by others in places where I did not know what to do, but this was mainly made by me
+
 import random
 def buildDeck():
     deck = []
