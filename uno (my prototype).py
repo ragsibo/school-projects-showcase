@@ -1,9 +1,6 @@
 import random
-
-
 def buildDeck():
     deck = []
-    # example card:Red 7,Green 8, Blue skip
     colours = ["Red", "Green", "Yellow", "Blue"]
     values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "Draw Two", "Skip", "Reverse"]
     wilds = ["Wild", "Wild Draw Four"]
@@ -16,27 +13,17 @@ def buildDeck():
     for i in range(4):
         deck.append(wilds[0])
         deck.append(wilds[1])
-    #print(deck)
     return deck
-
-
-
 def shuffleDeck(deck):
     for cardPos in range(len(deck)):
         randPos = random.randint(0, 107)
         deck[cardPos], deck[randPos] = deck[randPos], deck[cardPos]
     return deck
-
-
-
 def drawCards(numCards):
     cardsDrawn = []
     for x in range(numCards):
         cardsDrawn.append(unoDeck.pop(0))
     return cardsDrawn
-
-
-
 def showHand(player, playerHand):
     print("Player {}'s Turn".format(players_name[player]))
     print("Your Hand")
@@ -46,11 +33,6 @@ def showHand(player, playerHand):
         print("{}) {}".format(y, card))
         y += 1
     print("")
-
-
-
-
-
 def canPlay(colour, value, playerHand):
     for card in playerHand:
         if "Wild" in card:
@@ -58,13 +40,10 @@ def canPlay(colour, value, playerHand):
         elif colour in card or value in card:
             return True
     return False
-
-
 unoDeck = buildDeck()
 unoDeck = shuffleDeck(unoDeck)
 unoDeck = shuffleDeck(unoDeck)
 discards = []
-
 players_name = []
 players = []
 colours = ["Red", "Green", "Yellow", "Blue"]
@@ -76,8 +55,6 @@ while numPlayers < 2 or numPlayers > 4:
 for player in range(numPlayers):
     players_name.append(input("Enter player {} name: ".format(player+1)))
     players.append(drawCards(5))
-
-
 playerTurn = 0
 playDirection = 1
 playing = True
@@ -88,7 +65,6 @@ if currentColour != "Wild":
     cardVal = splitCard[1]
 else:
     cardVal = "Any"
-
 while playing:
     showHand(playerTurn, players[playerTurn])
     print("Card on top of discard pile: {}".format(discards[-1]))
@@ -99,14 +75,10 @@ while playing:
                 input("Not a valid card. Which card do you want to play?"))
         print("You played {}".format(players[playerTurn][cardChosen-1]))
         discards.append(players[playerTurn].pop(cardChosen-1))
-
-        # cheak if player won
         if len(players[playerTurn]) == 0:
             playing = False
-            # winner = "Player {}".format(playerTurn+1)
             winner = players_name[playerTurn]
         else:
-            # cheak for special cards
             splitCard = discards[-1].split(" ", 1)
             currentColour = splitCard[0]
             if len(splitCard) == 1:
